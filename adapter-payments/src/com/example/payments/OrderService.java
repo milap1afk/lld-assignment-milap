@@ -1,0 +1,16 @@
+package com.example.payments;
+
+import java.util.Objects;
+
+public class OrderService {
+    private final PaymentGateway gateway;
+
+    public OrderService(PaymentGateway gateway) {
+        this.gateway = Objects.requireNonNull(gateway, "gateway");
+    }
+
+    public String processOrder(String customerId, int amountCents) {
+        Objects.requireNonNull(customerId, "customerId");
+        return gateway.charge(customerId, amountCents);
+    }
+}
